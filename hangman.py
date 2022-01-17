@@ -62,7 +62,7 @@ def get_word():
 
         i\
         def display_hangman(tries):
-    stages = [  # final state: head, torso, both arms, and both legs
+            stages = [  # final state: head, torso, both arms, and both legs
                 """
                    --------
                    |      |

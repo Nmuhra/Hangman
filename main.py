@@ -1,13 +1,41 @@
-import random
+from turtle import clear
+from art import stages,logo
 from words import word_list
+import random
 
-txt = random.choice(word_list)
-length = str(len(txt))
-print("the word is "+length+" letters")
-guess = input("guess the word\n ")
+word = random.choice(word_list)
+length = len(word)
 
-if guess == txt :
-  print("that's right you win!")
+game_over = False
+tries = 6
+print(logo)
 
-else :
-    print("wrong guess, you lose!")
+display = []
+for _ in range(length):
+    display += "_"
+
+while not game_over:
+    guess = input("Guess a letter: ").lower()
+    clear()
+    if guess in display:
+      print(f"you have already guessed {guess}.")
+    for position in range(length):
+        letter = word[position]
+        if letter == guess:
+            display[position] = letter
+  
+    if guess not in word:
+        print(f"{guess} is not in the Word.")
+        tries -= 1
+        if tries == 0:
+            game_over = True
+            print("You lose.")
+            print(f"the word was{word}")
+
+    print(f"{' '.join(display)}")
+
+    if "_" not in display:
+        game_over = True
+        print("You win.")
+
+    print(stages[tries])
